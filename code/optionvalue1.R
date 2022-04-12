@@ -11,11 +11,15 @@ t <- ex$Age[1]
 r <- ex$Age[16]
 S <- ex$Age[19]
 
-
+ov <- tibble()
 calc_opvalue <- function(t, r, S, Y, B, rate) {
   for (i in t:(r-1)){
-    OV[i] <- Y[i]/(1+rate)^(i-t)
+    ov <- ov + Y[i-t+1,]/(1+rate)^(i-t)
   }
 }
 
-calc_opvalue(t, r, S, Y, B, rate)
+ov <- calc_opvalue(t, r, S, Y, B, rate)
+
+for (i in t:(r-1)){
+  print(Y[i-t+1,]/(1+rate)^(i-t))
+}
