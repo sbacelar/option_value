@@ -35,13 +35,10 @@ calc_opvalue <- function(t, r, S, Y, B, rate) {
   return(p)
 }
 
-TODO
-# maxi <- tibble(51:58,2)
-# for (r in 51:68){
-#   maxi(r,1) <- r
-#   maxi(r,2) <- calc_opvalue(t, r, S, Y, B, rate)
-# }
 
+maxi <- tibble()
 for (r in 51:68){
-  print(paste0(r, " -- ", calc_opvalue(t, r, S, Y, B, rate)))
+  maxi <- rbind(maxi, c(r,  calc_opvalue(t, r, S, Y, B, rate)))
 }
+
+max(maxi[,2])
