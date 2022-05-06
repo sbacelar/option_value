@@ -37,8 +37,11 @@ calc_opvalue <- function(t, r, S, Y, B, rate) {
 
 
 maxi <- tibble()
+
 for (r in 51:68){
   maxi <- rbind(maxi, c(r,  calc_opvalue(t, r, S, Y, B, rate)))
 }
+colnames(maxi) <- c("age", "money")
 
-max(maxi[,2])
+# this is the maximum
+maxi %>% slice_max(money)
